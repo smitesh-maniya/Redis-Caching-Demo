@@ -4078,24 +4078,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Amit Limbasiya\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Smitesh Maniya\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Amit Limbasiya\\source\\RedisCaching\\Redis-Caching-Demo\\ODataRedisCaching\\ODataRedisCaching.csproj",
+      "projectUniqueName": "D:\\R&D\\ODataRedisCaching\\ODataRedisCaching\\ODataRedisCaching.csproj",
       "projectName": "ODataRedisCaching",
-      "projectPath": "C:\\Users\\Amit Limbasiya\\source\\RedisCaching\\Redis-Caching-Demo\\ODataRedisCaching\\ODataRedisCaching.csproj",
-      "packagesPath": "C:\\Users\\Amit Limbasiya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Amit Limbasiya\\source\\RedisCaching\\Redis-Caching-Demo\\ODataRedisCaching\\obj\\",
+      "projectPath": "D:\\R&D\\ODataRedisCaching\\ODataRedisCaching\\ODataRedisCaching.csproj",
+      "packagesPath": "C:\\Users\\Smitesh Maniya\\.nuget\\packages\\",
+      "outputPath": "D:\\R&D\\ODataRedisCaching\\ODataRedisCaching\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Amit Limbasiya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Smitesh Maniya\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4103,7 +4098,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
