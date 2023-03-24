@@ -14,10 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(mvcOptions => mvcOptions.EnableEndpointRouting = false);
 
 builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+//builder.Services.AddSwaggerGen();
 
 builder.Services.AddOData();
 
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IDistrictDataService,DistrictDataService>();
 builder.Services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect("localhost"));
 
 builder.Services.AddRedisOutputCache(options =>
@@ -41,6 +43,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
 
@@ -61,6 +65,7 @@ IEdmModel GetEdmModel()
 {
     var edmBuilder = new ODataConventionModelBuilder();
     edmBuilder.EntitySet<Student>("Student");
+    edmBuilder.EntitySet<District>("District");
     return edmBuilder.GetEdmModel();
 }
 

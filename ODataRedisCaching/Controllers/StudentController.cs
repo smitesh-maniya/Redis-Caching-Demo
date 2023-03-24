@@ -18,10 +18,9 @@ namespace ODataRedisCaching.Controllers
             _studentService = studentService;
         }
 
-        //[OutputCache]
         //[OutputCache(VaryByQueryKeys = new string[] { "SName" })]
         [HttpGet]
-        [OutputCache()]
+        [OutputCache]
         [EnableQuery()]
         public async Task<ActionResult<List<Student>>> Get()
         {
@@ -38,6 +37,6 @@ namespace ODataRedisCaching.Controllers
             return Ok(data);
         }
 
-       
+
     }
 }
