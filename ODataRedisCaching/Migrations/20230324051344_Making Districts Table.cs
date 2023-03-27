@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ODataPractice.Migrations
+namespace ODataRedisCaching.Migrations
 {
     /// <inheritdoc />
     public partial class MakingDistrictsTable : Migration

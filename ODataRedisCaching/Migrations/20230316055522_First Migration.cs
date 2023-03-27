@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ODataPractice.Migrations
+namespace ODataRedisCaching.Migrations
 {
     /// <inheritdoc />
     public partial class FirstMigration : Migration
