@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "6rPq9zSVtToECWrRcvXzQM69A7qEJufDPkigOheXZF8=",
+  "Source": "ODataRedisCaching",
+  "BasePath": "_content/ODataRedisCaching",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

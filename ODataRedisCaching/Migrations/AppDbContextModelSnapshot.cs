@@ -8,7 +8,7 @@ using ODataRedisCaching.DataCotext;
 
 #nullable disable
 
-namespace ODataPractice.Migrations
+namespace ODataRedisCaching.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot

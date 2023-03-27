@@ -9,7 +9,7 @@ using ODataRedisCaching.DataCotext;
 
 #nullable disable
 
-namespace ODataPractice.Migrations
+namespace ODataRedisCaching.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20230316055522_First Migration")]
