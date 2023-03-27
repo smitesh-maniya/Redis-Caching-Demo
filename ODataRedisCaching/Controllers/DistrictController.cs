@@ -27,7 +27,7 @@ namespace ODataRedisCaching.Controllers
         [ODataRoute("({id})")]
         [OutputCache]
         [EnableQuery()]
-        public async Task<ActionResult<District>> Get(int id)
+        public async Task<ActionResult<District>> GetById(int id)
         {
             Console.WriteLine("Get district data");
             var district = await _districtDataService.GetDistrictData(id);
