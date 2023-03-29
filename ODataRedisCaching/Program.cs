@@ -14,8 +14,12 @@ IEdmModel GetEdmModel()
     return edmBuilder.GetEdmModel();
 }
 
-builder.Services.AddControllers(mvcOptions => mvcOptions.EnableEndpointRouting = false).AddOData(
-        options => options.Select().Expand().OrderBy().Count().Filter().SetMaxTop(100)
+//builder.Services.AddControllers(mvcOptions => mvcOptions.EnableEndpointRouting = false).AddOData(
+//        options => options.Select().Expand().OrderBy().Count().Filter().SetMaxTop(null)
+//                    .AddRouteComponents("odata", GetEdmModel())
+    //);
+builder.Services.AddControllers().AddOData(
+        options => options.Select().Expand().OrderBy().Count().Filter().SetMaxTop(null)
                     .AddRouteComponents("odata", GetEdmModel())
     );
 
@@ -30,13 +34,12 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseHttpsRedirection();
-
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseEndpoints(endpoins => endpoins.MapControllers());
 //app.UseOutputCache();
 
-app.MapControllers();
 
 app.Run();

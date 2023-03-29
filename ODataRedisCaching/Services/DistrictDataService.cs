@@ -18,7 +18,7 @@ namespace ODataRedisCaching.Services
         }
         public async Task<District?> GetDistrictData(int id)
         {
-            if(id==null) return null;
+            if(id<=0) return null;
             var dist = await _db.Districts.FindAsync(id);
             if(dist == null)
             {

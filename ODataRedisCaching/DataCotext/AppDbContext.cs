@@ -10,6 +10,7 @@ namespace ODataRedisCaching.DataCotext
         }
         public DbSet<District> Districts { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
