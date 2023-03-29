@@ -1,50 +1,32 @@
 using Microsoft.EntityFrameworkCore;
 using ODataRedisCaching.DataCotext;
 using Microsoft.OData.Edm;
-using Microsoft.AspNetCore.OutputCaching;
 using ODataRedisCaching.Models;
-using ODataRedisCaching.Caching;
-using Microsoft.AspNet.OData.Extensions;
-using Microsoft.AspNet.OData.Builder;
-using StackExchange.Redis;
 using ODataRedisCaching.Services;
+using Microsoft.OData.ModelBuilder;
+using Microsoft.AspNetCore.OData;
 
 var builder = WebApplication.CreateBuilder(args);
+IEdmModel GetEdmModel()
+{
+    var edmBuilder = new ODataConventionModelBuilder();
+    edmBuilder.EntitySet<District>("District");
+    return edmBuilder.GetEdmModel();
+}
 
-builder.Services.AddControllers(mvcOptions => mvcOptions.EnableEndpointRouting = false);
+builder.Services.AddControllers(mvcOptions => mvcOptions.EnableEndpointRouting = false).AddOData(
+        options => options.Select().Expand().OrderBy().Count().Filter().SetMaxTop(100)
+                    .AddRouteComponents("odata", GetEdmModel())
+    );
 
 builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-//builder.Services.AddSwaggerGen();
 
-builder.Services.AddOData();
 
-builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IDistrictDataService,DistrictDataService>();
-builder.Services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect("localhost"));
-
-builder.Services.AddRedisOutputCache(options =>
-{
-    options.AddBasePolicy(builder => {
-        builder.Expire(TimeSpan.FromMinutes(5));
-        //builder.Tag("Search");
-    });
-    //options.AddPolicy("VaryBySName", builder =>
-    //{
-    //    builder.VaryByQuery("SName");
-    //    //builder.Tag("");
-    //});
-    //options.AddPolicy("RemoveCache", builder =>
-    //{
-    //    builder.NoCache();
-    //    //builder.
-    //});
-});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    //app.UseSwagger();
-    //app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
 
@@ -53,21 +35,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
-app.UseOutputCache();
-
-app.UseMvc(routeBuilder =>
-{
-    routeBuilder.Select().Expand().OrderBy().Count().Filter().MaxTop(100);
-    routeBuilder.MapODataServiceRoute(routeName:"odata", routePrefix:"odata", model:GetEdmModel());
-});
-
-IEdmModel GetEdmModel()
-{
-    var edmBuilder = new ODataConventionModelBuilder();
-    edmBuilder.EntitySet<Student>("Student");
-    edmBuilder.EntitySet<District>("District");
-    return edmBuilder.GetEdmModel();
-}
+//app.UseOutputCache();
 
 app.MapControllers();
 

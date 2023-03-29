@@ -4,7 +4,7 @@ namespace ODataRedisCaching.Services
 {
     public interface IDistrictDataService
     {
-        Task<List<District>> GetDistricts();
+        IQueryable<District> GetDistricts();
 
         Task<District> GetDistrictData(int id);
     }
