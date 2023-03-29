@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Routing;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.AspNetCore.OutputCaching;
 using ODataRedisCaching.Models;
 using ODataRedisCaching.Services;
 
 namespace ODataRedisCaching.Controllers
 {
-    [ODataRoutePrefix("District")]
+    //[ODataRoutePrefix("District")]
     public class DistrictController : ODataController
     {
         private readonly IDistrictDataService _districtDataService;
@@ -18,13 +18,13 @@ namespace ODataRedisCaching.Controllers
         [HttpGet]
         [OutputCache]
         [EnableQuery()]
-        public async Task<ActionResult<List<District>>> Get()
+        public ActionResult<List<District>> Get()
         {
             Console.WriteLine("Get all data");
-            var data = await _districtDataService.GetDistricts();
+            var data = _districtDataService.GetDistricts();
             return Ok(data);
         }
-        [ODataRoute("({id})")]
+        [Route("{id}")]
         [OutputCache]
         [EnableQuery()]
         public async Task<ActionResult<District>> GetById(int id)

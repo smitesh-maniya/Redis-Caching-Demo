@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ODataRedisCaching.DataCotext;
 using ODataRedisCaching.Models;
 
@@ -13,9 +12,9 @@ namespace ODataRedisCaching.Services
         {
             _db = dbContext;
         }
-        public async Task<List<District>> GetDistricts()
+        public IQueryable<District> GetDistricts()
         {
-            return await _db.Districts.ToListAsync();
+            return _db.Districts;
         }
         public async Task<District?> GetDistrictData(int id)
         {
@@ -30,3 +29,4 @@ namespace ODataRedisCaching.Services
 
     }
 }
+//orderby groupby applyto
