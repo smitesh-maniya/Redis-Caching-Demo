@@ -158,3 +158,6 @@ C:\Users\Amit Limbasiya\source\RedisCaching\Redis-Caching-Demo\ODataRedisCaching
 C:\Users\Amit Limbasiya\source\RedisCaching\Redis-Caching-Demo\ODataRedisCaching\obj\Debug\net7.0\ODataRedisCaching.pdb
 C:\Users\Amit Limbasiya\source\RedisCaching\Redis-Caching-Demo\ODataRedisCaching\obj\Debug\net7.0\ODataRedisCaching.genruntimeconfig.cache
 C:\Users\Amit Limbasiya\source\RedisCaching\Redis-Caching-Demo\ODataRedisCaching\obj\Debug\net7.0\ref\ODataRedisCaching.dll
+C:\Users\Amit Limbasiya\source\RedisCaching\Redis-Caching-Demo\ODataRedisCaching\bin\Debug\net7.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\Amit Limbasiya\source\RedisCaching\Redis-Caching-Demo\ODataRedisCaching\bin\Debug\net7.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\Amit Limbasiya\source\RedisCaching\Redis-Caching-Demo\ODataRedisCaching\bin\Debug\net7.0\StackExchange.Redis.dll

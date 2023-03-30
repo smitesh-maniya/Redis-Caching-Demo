@@ -41,7 +41,7 @@ namespace ODataRedisCaching.Controllers
             }
         }
 
-        //[OutputCache]
+        [OutputCache]
         [EnableQuery]
         public async Task<ActionResult<District>> Get([FromRoute]int key) //only key as a variable name can get the route value 
                                                                           //Naming convention should be maintained...variable name for route value must be key.
