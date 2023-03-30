@@ -9,7 +9,6 @@ using ODataRedisCaching.Services;
 
 namespace ODataRedisCaching.Controllers
 {
-    //[ODataRoutePrefix("District")]
     public class DistrictController : ODataController
     {
         private readonly IDistrictDataService _districtDataService;
@@ -26,7 +25,7 @@ namespace ODataRedisCaching.Controllers
         {
             try
             {
-                _logger.LogInformation("Get all data");
+                _logger.LogInformation("Hit database");
                 var data = _districtDataService.GetDistricts();
                 if(data== null)
                 {
@@ -37,29 +36,6 @@ namespace ODataRedisCaching.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex,"Exception occurs in fetching data");
-                return BadRequest(ex);
-            }
-        }
-
-        [OutputCache]
-        [EnableQuery]
-        public async Task<ActionResult<District>> Get([FromRoute]int key) //only key as a variable name can get the route value 
-                                                                          //Naming convention should be maintained...variable name for route value must be key.
-        {
-            try
-            {
-                _logger.LogInformation("Get district data");
-                var district = await _districtDataService.GetDistrictData(key);
-                if (district == null)
-                {
-                    _logger.LogError($"District with {key} not found in database.");
-                    return BadRequest("District not found with given id.");
-                }
-                return Ok(district);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"{ex.Message}");
                 return BadRequest(ex);
             }
         }

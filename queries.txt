@@ -1,5 +1,0 @@
-Groupby query:
-https://localhost:7162/odata/District?$apply=groupby((DistrictName),aggregate($count%20as%20NumberOfTowns))
-
-orderby:
-https://localhost:7162/odata/District?$orderby=DistrictName

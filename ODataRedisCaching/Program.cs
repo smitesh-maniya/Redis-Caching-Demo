@@ -6,7 +6,6 @@ using ODataRedisCaching.Services;
 using Microsoft.OData.ModelBuilder;
 using Microsoft.AspNetCore.OData;
 using ODataRedisCaching.Caching;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

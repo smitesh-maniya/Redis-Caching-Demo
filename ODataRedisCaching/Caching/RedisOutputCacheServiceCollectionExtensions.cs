@@ -3,14 +3,19 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace ODataRedisCaching.Caching
 {
+    //custom implementation for AddRedisOutputCache service with/without configurationOptions
     public static class RedisOutputCacheServiceCollectionExtensions
     {
         public static IServiceCollection AddRedisOutputCache(this IServiceCollection services)
         {
             ArgumentNullException.ThrowIfNull(services);
-            services.AddOutputCache();
-            services.RemoveAll<IOutputCacheStore>();
-            services.TryAddSingleton<IOutputCacheStore,RedisOutputCacheStore>();
+            
+            services.AddOutputCache();  //adding dedault in-memory output cache
+
+            services.RemoveAll<IOutputCacheStore>(); //remove in-memory storage
+
+            //adding custom redisoutputcache store implementation
+            services.TryAddSingleton<IOutputCacheStore,RedisOutputCacheStore>(); 
             return services;
         }
 
@@ -18,7 +23,10 @@ namespace ODataRedisCaching.Caching
         {
             ArgumentNullException.ThrowIfNull(services);
             ArgumentNullException.ThrowIfNull(configureOptions);
+            
+            //configure options
             services.Configure(configureOptions);
+            
             services.AddRedisOutputCache();
             return services;
         }

@@ -2,6 +2,7 @@
 
 namespace ODataRedisCaching.Models
 {
+    //DIstrict model for database
     [Serializable]
     public class District
     {

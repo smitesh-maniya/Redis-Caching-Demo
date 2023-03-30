@@ -24,9 +24,17 @@ namespace ODataRedisCaching.Caching
                 return null;
             ArgumentNullException.ThrowIfNull(key, "key");
 
-            _logger.LogInformation("Getting from Cache");
+            _logger.LogInformation("Checking Cache");
 
             var val =await  _cache.GetAsync(key);
+            if (val == null)
+            {
+                _logger.LogWarning("Cache miss");
+            }
+            else
+            {
+                _logger.LogInformation("Cache hit");
+            }
             return val;
         }
 
@@ -35,12 +43,13 @@ namespace ODataRedisCaching.Caching
             ArgumentNullException.ThrowIfNull(key, "key");
             ArgumentNullException.ThrowIfNull(value, "value");
 
-            _logger.LogInformation("Adding in cache");
 
             var options = new DistributedCacheEntryOptions();
             options.SetAbsoluteExpiration(validFor);
 
             await _cache.SetAsync(key, value,options);
+            _logger.LogInformation("Cache stored in redis");
+
         }
     }
 }
