@@ -3,3 +3,6 @@ https://localhost:7162/odata/District?$apply=groupby((DistrictName),aggregate($c
 
 orderby:
 https://localhost:7162/odata/District?$orderby=DistrictName
+
+GroupBy and OrderBy together
+$apply=filter(amount gt 50)/groupby((customer_id),aggregate(amount with sum as total_amount))&$orderby=customer_id asc
