@@ -1,3 +1,9 @@
 /bulkcopyCode.txt
 .vs/
 /queries.txt
+cacheData/
+data/
+dbpassword.txt/
+log/
+redispassword.txt/
+secrets/

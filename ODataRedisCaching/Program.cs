@@ -23,8 +23,10 @@ builder.Services.AddControllers().AddOData(
                     .AddRouteComponents("odata", GetEdmModel())
 );
 
+var DBConf = builder.Configuration.GetSection("DBConfiguration");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
+    $"Server={DBConf["DBServer"]},{DBConf["port"]};Initial Catalog={DBConf["Database"]};User ID = {DBConf["DBUser"]};Password= {DBConf["DBPassword"]};TrustServerCertificate=true;"));
 
-builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<IDistrictDataService,DistrictDataService>();
 
 //redis distributed cache service enable
@@ -47,6 +49,13 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    using (var scope = app.Services.CreateScope())
+    {
+        var districtContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var pendingMigrations= districtContext.Database.GetPendingMigrations().ToList();
+        if(pendingMigrations.Any())
+            districtContext.Database.Migrate();
+    }
     app.UseDeveloperExceptionPage();
 }
 else
@@ -56,6 +65,7 @@ else
 }
 app.UseRouting();
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseOutputCache();

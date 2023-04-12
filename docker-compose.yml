@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: $dbpassword
+        MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    secrets:
+      - dbpassword
+    volumes:
+      - ./data:/var/opt/mssql/data
+      - ./log:/var/opt/mssql/log
+      - ./secrets:/var/opt/mssql/secrets
+  
+  cache:
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    secrets:
+      - redispassword
+    command: redis-server --save 20 1 --loglevel warning --requirepass "${redispassword}"
+    volumes: 
+        - ./cacheData:/data
+
+  odatarediscaching:
+    image: ${DOCKER_REGISTRY-}odatarediscaching
+    build:
+      context: .
+      dockerfile: ODataRedisCaching/Dockerfile
+    environment:
+      DBServer: "ms-sql-server"
+    ports:
+        - "8080:80"
+        - "8081:443"
+    depends_on:
+        - ms-sql-server
+        - cache
+secrets:
+    dbpassword:
+        file: dbpassword.txt
+    redispassword:
+        file: redispassword.txt
